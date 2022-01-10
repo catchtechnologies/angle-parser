@@ -266,14 +266,14 @@ function getCurrentRegion() {
 }
 
 function updateElevation(el) {
-  if (el) {
+  if (el != null) {
     elevation = el;
     calculateRegion(elevation, azimuth);
   }
 }
 
 function updateAzimuth(az) {
-  if (az) {
+  if (az != null) {
     azimuth = az;
     calculateRegion(elevation, azimuth);
   }
