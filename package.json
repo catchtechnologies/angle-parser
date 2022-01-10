@@ -1,0 +1,298 @@
+{
+  "name": "angle-parser",
+  "version": "1.0.0",
+  "description": "Parses horizontal and vertical angle information and indicates when a predefined region is selected. Useful for determining speaker position with beamforming microphones.",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/catchtechnologies/angle-parser.git"
+  },
+  "author": "Patrick Murray",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/catchtechnologies/angle-parser.git/issues"
+  },
+  "homepage": "https://github.com/catchtechnologies/angle-parser.git#readme",
+  "dependencies": {
+    "catch-messaging": "^1.5.2",
+    "yargs": "^17.3.1"
+  },
+  "pkg": {
+    "scripts": "js/**/*.js"
+  },
+  "bin": "main.js",
+  "parameters": [
+    {
+      "parameter": "debug",
+      "name": "Debug",
+      "type": "bool",
+      "default": false,
+      "required": false,
+      "placeholder": "",
+      "tooltip": "Prints debug messages when enabled."
+    },
+    {
+      "parameter": "debounceTime",
+      "name": "Debounce Delay Time",
+      "type": "string",
+      "default": "",
+      "required": true,
+      "placeholder": "Enter the delay time in milliseconds.",
+      "tooltip": "The time in milliseconds to wait before recalculating the current region."
+    },
+    {
+      "parameter": "publishChangesOnly",
+      "name": "publishChangesOnly",
+      "type": "bool",
+      "default": true,
+      "required": true,
+      "placeholder": "",
+      "tooltip": "When true, the current region value is published only when the region changes."
+    },
+    {
+      "parameter": "region1MinEl",
+      "name": "Region 1 Minimum Elevation",
+      "type": "string",
+      "default": "",
+      "required": true,
+      "placeholder": "Enter the minimum value for this region's elevation",
+      "tooltip": "The minimum elevation value for this region."
+    },
+    {
+      "parameter": "region1MaxEl",
+      "name": "Region 1 Maximum Elevation",
+      "type": "string",
+      "default": "",
+      "required": true,
+      "placeholder": "Enter the maximum value for this region's elevation",
+      "tooltip": "The maximum elevation value for this region."
+    },
+    {
+      "parameter": "region1MinAz",
+      "name": "Region 1 Minimum Azimuth",
+      "type": "string",
+      "default": "",
+      "required": true,
+      "placeholder": "Enter the minimum value for this region's azimuth",
+      "tooltip": "The minimum azimuth value for this region."
+    },
+    {
+      "parameter": "region1MaxAz",
+      "name": "Region 1 Maximum Azimuth",
+      "type": "string",
+      "default": "",
+      "required": true,
+      "placeholder": "Enter the maximum value for this region's azimuth",
+      "tooltip": "The maximum azimuth value for this region."
+    },
+    {
+      "parameter": "region2MinEl",
+      "name": "Region 1 Minimum Elevation",
+      "type": "string",
+      "default": "",
+      "required": true,
+      "placeholder": "Enter the minimum value for this region's elevation",
+      "tooltip": "The minimum elevation value for this region."
+    },
+    {
+      "parameter": "region2MaxEl",
+      "name": "Region 1 Maximum Elevation",
+      "type": "string",
+      "default": "",
+      "required": true,
+      "placeholder": "Enter the maximum value for this region's elevation",
+      "tooltip": "The maximum elevation value for this region."
+    },
+    {
+      "parameter": "region2MinAz",
+      "name": "Region 1 Minimum Azimuth",
+      "type": "string",
+      "default": "",
+      "required": true,
+      "placeholder": "Enter the minimum value for this region's azimuth",
+      "tooltip": "The minimum azimuth value for this region."
+    },
+    {
+      "parameter": "region2MaxAz",
+      "name": "Region 1 Maximum Azimuth",
+      "type": "string",
+      "default": "",
+      "required": true,
+      "placeholder": "Enter the maximum value for this region's azimuth",
+      "tooltip": "The maximum azimuth value for this region."
+    },
+    {
+      "parameter": "region3MinEl",
+      "name": "Region 1 Minimum Elevation",
+      "type": "string",
+      "default": "",
+      "required": true,
+      "placeholder": "Enter the minimum value for this region's elevation",
+      "tooltip": "The minimum elevation value for this region."
+    },
+    {
+      "parameter": "region3MaxEl",
+      "name": "Region 1 Maximum Elevation",
+      "type": "string",
+      "default": "",
+      "required": true,
+      "placeholder": "Enter the maximum value for this region's elevation",
+      "tooltip": "The maximum elevation value for this region."
+    },
+    {
+      "parameter": "region3MinAz",
+      "name": "Region 1 Minimum Azimuth",
+      "type": "string",
+      "default": "",
+      "required": true,
+      "placeholder": "Enter the minimum value for this region's azimuth",
+      "tooltip": "The minimum azimuth value for this region."
+    },
+    {
+      "parameter": "region3MaxAz",
+      "name": "Region 1 Maximum Azimuth",
+      "type": "string",
+      "default": "",
+      "required": true,
+      "placeholder": "Enter the maximum value for this region's azimuth",
+      "tooltip": "The maximum azimuth value for this region."
+    },
+    {
+      "parameter": "region4MinEl",
+      "name": "Region 1 Minimum Elevation",
+      "type": "string",
+      "default": "",
+      "required": true,
+      "placeholder": "Enter the minimum value for this region's elevation",
+      "tooltip": "The minimum elevation value for this region."
+    },
+    {
+      "parameter": "region4MaxEl",
+      "name": "Region 1 Maximum Elevation",
+      "type": "string",
+      "default": "",
+      "required": true,
+      "placeholder": "Enter the maximum value for this region's elevation",
+      "tooltip": "The maximum elevation value for this region."
+    },
+    {
+      "parameter": "region4MinAz",
+      "name": "Region 1 Minimum Azimuth",
+      "type": "string",
+      "default": "",
+      "required": true,
+      "placeholder": "Enter the minimum value for this region's azimuth",
+      "tooltip": "The minimum azimuth value for this region."
+    },
+    {
+      "parameter": "region4MaxAz",
+      "name": "Region 1 Maximum Azimuth",
+      "type": "string",
+      "default": "",
+      "required": true,
+      "placeholder": "Enter the maximum value for this region's azimuth",
+      "tooltip": "The maximum azimuth value for this region."
+    },
+    {
+      "parameter": "region5MinEl",
+      "name": "Region 1 Minimum Elevation",
+      "type": "string",
+      "default": "",
+      "required": true,
+      "placeholder": "Enter the minimum value for this region's elevation",
+      "tooltip": "The minimum elevation value for this region."
+    },
+    {
+      "parameter": "region5MaxEl",
+      "name": "Region 1 Maximum Elevation",
+      "type": "string",
+      "default": "",
+      "required": true,
+      "placeholder": "Enter the maximum value for this region's elevation",
+      "tooltip": "The maximum elevation value for this region."
+    },
+    {
+      "parameter": "region5MinAz",
+      "name": "Region 1 Minimum Azimuth",
+      "type": "string",
+      "default": "",
+      "required": true,
+      "placeholder": "Enter the minimum value for this region's azimuth",
+      "tooltip": "The minimum azimuth value for this region."
+    },
+    {
+      "parameter": "region5MaxAz",
+      "name": "Region 1 Maximum Azimuth",
+      "type": "string",
+      "default": "",
+      "required": true,
+      "placeholder": "Enter the maximum value for this region's azimuth",
+      "tooltip": "The maximum azimuth value for this region."
+    }
+  ],
+  "commands": [
+    {
+      "name": "Get Current Region",
+      "editable": false,
+      "pattern": "getCurrentRegion",
+      "useHex": false,
+      "endWith": "none",
+      "descriptions": [
+        {
+          "title": "Description",
+          "body": "Gets the current region."
+        }
+      ],
+      "channel": "example.get.current.region"
+    },
+    {
+      "name": "Elevation",
+      "editable": false,
+      "pattern": "updateElevation:#PAYLOAD#",
+      "useHex": false,
+      "endWith": "none",
+      "descriptions": [
+        {
+          "title": "Description",
+          "body": "Sets the elevation and calculates the current region."
+        }
+      ],
+      "channel": "example.update.elevation"
+    },
+    {
+      "name": "Azimuth",
+      "editable": false,
+      "pattern": "updateAzimuth:#PAYLOAD#",
+      "useHex": false,
+      "endWith": "none",
+      "descriptions": [
+        {
+          "title": "Description",
+          "body": "Sets the azimuth and calculates the current region."
+        }
+      ],
+      "channel": "example.update.azimuth"
+    }
+  ],
+  "responses": [
+    {
+      "name": "Region",
+      "editable": false,
+      "pattern": "^region:(.+)$",
+      "useHex": false,
+      "endWith": "none",
+      "useRegularExpression": true,
+      "descriptions": [
+        {
+          "title": "Description",
+          "body": "Indicates the current region."
+        }
+      ],
+      "channel": "example.current.region",
+      "persist": false
+    }
+  ]
+}
