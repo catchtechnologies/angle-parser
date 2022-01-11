@@ -1,6 +1,6 @@
 {
   "name": "angle-parser",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Parses horizontal and vertical angle information and indicates when a predefined region is selected. Useful for determining speaker position with beamforming microphones.",
   "main": "main.js",
   "scripts": {
@@ -90,7 +90,7 @@
     },
     {
       "parameter": "region2MinEl",
-      "name": "Region 1 Minimum Elevation",
+      "name": "Region 2 Minimum Elevation",
       "type": "string",
       "default": "",
       "required": true,
@@ -99,7 +99,7 @@
     },
     {
       "parameter": "region2MaxEl",
-      "name": "Region 1 Maximum Elevation",
+      "name": "Region 2 Maximum Elevation",
       "type": "string",
       "default": "",
       "required": true,
@@ -108,7 +108,7 @@
     },
     {
       "parameter": "region2MinAz",
-      "name": "Region 1 Minimum Azimuth",
+      "name": "Region 2 Minimum Azimuth",
       "type": "string",
       "default": "",
       "required": true,
@@ -117,7 +117,7 @@
     },
     {
       "parameter": "region2MaxAz",
-      "name": "Region 1 Maximum Azimuth",
+      "name": "Region 2 Maximum Azimuth",
       "type": "string",
       "default": "",
       "required": true,
@@ -126,7 +126,7 @@
     },
     {
       "parameter": "region3MinEl",
-      "name": "Region 1 Minimum Elevation",
+      "name": "Region 3 Minimum Elevation",
       "type": "string",
       "default": "",
       "required": true,
@@ -135,7 +135,7 @@
     },
     {
       "parameter": "region3MaxEl",
-      "name": "Region 1 Maximum Elevation",
+      "name": "Region 3 Maximum Elevation",
       "type": "string",
       "default": "",
       "required": true,
@@ -144,7 +144,7 @@
     },
     {
       "parameter": "region3MinAz",
-      "name": "Region 1 Minimum Azimuth",
+      "name": "Region 3 Minimum Azimuth",
       "type": "string",
       "default": "",
       "required": true,
@@ -153,7 +153,7 @@
     },
     {
       "parameter": "region3MaxAz",
-      "name": "Region 1 Maximum Azimuth",
+      "name": "Region 3 Maximum Azimuth",
       "type": "string",
       "default": "",
       "required": true,
@@ -162,7 +162,7 @@
     },
     {
       "parameter": "region4MinEl",
-      "name": "Region 1 Minimum Elevation",
+      "name": "Region 4 Minimum Elevation",
       "type": "string",
       "default": "",
       "required": true,
@@ -171,7 +171,7 @@
     },
     {
       "parameter": "region4MaxEl",
-      "name": "Region 1 Maximum Elevation",
+      "name": "Region 4 Maximum Elevation",
       "type": "string",
       "default": "",
       "required": true,
@@ -180,7 +180,7 @@
     },
     {
       "parameter": "region4MinAz",
-      "name": "Region 1 Minimum Azimuth",
+      "name": "Region 4 Minimum Azimuth",
       "type": "string",
       "default": "",
       "required": true,
@@ -189,7 +189,7 @@
     },
     {
       "parameter": "region4MaxAz",
-      "name": "Region 1 Maximum Azimuth",
+      "name": "Region 4 Maximum Azimuth",
       "type": "string",
       "default": "",
       "required": true,
@@ -198,7 +198,7 @@
     },
     {
       "parameter": "region5MinEl",
-      "name": "Region 1 Minimum Elevation",
+      "name": "Region 5 Minimum Elevation",
       "type": "string",
       "default": "",
       "required": true,
@@ -207,7 +207,7 @@
     },
     {
       "parameter": "region5MaxEl",
-      "name": "Region 1 Maximum Elevation",
+      "name": "Region 5 Maximum Elevation",
       "type": "string",
       "default": "",
       "required": true,
@@ -216,7 +216,7 @@
     },
     {
       "parameter": "region5MinAz",
-      "name": "Region 1 Minimum Azimuth",
+      "name": "Region 5 Minimum Azimuth",
       "type": "string",
       "default": "",
       "required": true,
@@ -225,7 +225,7 @@
     },
     {
       "parameter": "region5MaxAz",
-      "name": "Region 1 Maximum Azimuth",
+      "name": "Region 5 Maximum Azimuth",
       "type": "string",
       "default": "",
       "required": true,
@@ -247,6 +247,48 @@
         }
       ],
       "channel": "example.get.current.region"
+    },
+    {
+      "name": "Get Enabled Status",
+      "editable": false,
+      "pattern": "getEnabledStatus",
+      "useHex": false,
+      "endWith": "none",
+      "descriptions": [
+        {
+          "title": "Description",
+          "body": "Gets the enabled state."
+        }
+      ],
+      "channel": "example.get.enabled"
+    },
+    {
+      "name": "Enable",
+      "editable": false,
+      "pattern": "enable",
+      "useHex": false,
+      "endWith": "none",
+      "descriptions": [
+        {
+          "title": "Description",
+          "body": "Enables the parse."
+        }
+      ],
+      "channel": "example.enable"
+    },
+    {
+      "name": "Disable",
+      "editable": false,
+      "pattern": "disable",
+      "useHex": false,
+      "endWith": "none",
+      "descriptions": [
+        {
+          "title": "Description",
+          "body": "Disables the parse."
+        }
+      ],
+      "channel": "example.disable"
     },
     {
       "name": "Elevation",
@@ -292,6 +334,22 @@
         }
       ],
       "channel": "example.current.region",
+      "persist": false
+    },
+    {
+      "name": "Enabled",
+      "editable": false,
+      "pattern": "^enabled:(.+)$",
+      "useHex": false,
+      "endWith": "none",
+      "useRegularExpression": true,
+      "descriptions": [
+        {
+          "title": "Description",
+          "body": "Indicates if parsing is enabled."
+        }
+      ],
+      "channel": "example.enabled",
       "persist": false
     }
   ]

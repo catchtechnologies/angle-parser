@@ -7,7 +7,7 @@ var pjson = require("./package.json");
 var serviceName = argv.serviceName || "Angle Parser";
 var debug = argv.debug;
 var debounceTime = argv.debounceTime || "debounceTime";
-var publishChangesOnly = argv.publishChangesOnly || "false";
+var publishChangesOnly = argv.publishChangesOnly || false;
 var region1MinEl = argv.region1MinEl;
 var region1MaxEl = argv.region1MaxEl;
 var region1MinAz = argv.region1MinAz;
@@ -35,6 +35,7 @@ var currentRegion;
 var debounceActive = false;
 var elevation;
 var azimuth;
+var enabled = true;
 
 // Sample commands for testing.
 var serviceCommands = pjson.commands || [];
@@ -92,8 +93,23 @@ function evaulateCliCommands(command, context, filename, callback) {
 
 function processCommand(command) {
   log("Processing command: " + command);
-  if (command === "getCurrentRegion") {
-    getCurrentRegion();
+  if (!command.includes(":")) {
+    switch (command) {
+      case "getCurrentRegion":
+        getCurrentRegion();
+        break;
+      case "getEnabledStatus":
+        getEnabledStatus();
+        break;
+      case "enable":
+        enabled = true;
+        getEnabledStatus();
+        break;
+      case "disable":
+        enabled = false;
+        getEnabledStatus();
+        break;
+    }
     return;
   }
   const commandArray = command.split(":");
@@ -265,15 +281,19 @@ function getCurrentRegion() {
   messaging.publish("region:" + currentRegion);
 }
 
+function getEnabledStatus() {
+  messaging.publish("enabled:" + enabled);
+}
+
 function updateElevation(el) {
-  if (el != null) {
+  if (el != null && enabled) {
     elevation = el;
     calculateRegion(elevation, azimuth);
   }
 }
 
 function updateAzimuth(az) {
-  if (az != null) {
+  if (az != null && enabled) {
     azimuth = az;
     calculateRegion(elevation, azimuth);
   }
